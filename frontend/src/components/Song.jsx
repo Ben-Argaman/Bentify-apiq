@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 
 const Song = ({ track, index, albumImg }) => {
   useEffect(() => {}, [track]);
-
+  function padTo2Digits(num) {
+    return num.toString().padStart(2, "0");
+  }
   return (
     <>
       <div className="grid grid-cols-2 text-gray-500 h-24 p-2 cursor-pointer hover:bg-gray-900 text-lg">
@@ -31,6 +33,9 @@ const Song = ({ track, index, albumImg }) => {
           <p className="w-40 hidden md:inline">
             {track.albumName ? track.albumName : albumImg && albumImg.name}
           </p>
+          <p>{`${padTo2Digits(Math.floor(track.duration / 60))}:${padTo2Digits(
+            track.duration % 60
+          )}`}</p>
         </div>
       </div>
     </>

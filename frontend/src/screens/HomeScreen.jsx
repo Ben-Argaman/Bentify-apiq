@@ -42,7 +42,8 @@ const HomeScreen = () => {
     const { data } = await axios.get(
       `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=e1c393f9c0cc727b780db859810b26bc&artist=${artist}&album=${album}&format=json`
     );
-    setSearchResults(data.album);
+    console.log(data);
+    data.album.tracks.track.length > 2 && setSearchResults(data.album);
   };
 
   useEffect(() => {
