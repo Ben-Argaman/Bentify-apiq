@@ -51,7 +51,7 @@ const SideBar = ({ recentPlayedTracks, albumImg }) => {
                   src={
                     track.result
                       ? track.result.header_image_thumbnail_url
-                      : albumImg && Object.values(albumImg.image[2])[1]
+                      : albumImg.image && Object.values(albumImg.image[2])[1]
                   }
                   alt=""
                   srcSet=""
