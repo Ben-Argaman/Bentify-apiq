@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const SideBar = () => {
   return (
     <>
-      <div className="p-5 text-xs lg:text-base font-semibold text-[#5c5656]	 border-r border-gray-100 bg-[#fff] overflow-y-scroll w-full h-screen sm:max-w-[12rem] lg:max-w-[15rem] hidden md:block pb-36 shadow-2xl">
+      <div className="p-5 text-xs lg:text-base font-semibold text-[#5c5656]	 border-r border-gray-100 bg-[#fff] overflow-y-scroll w-full h-screen sm:max-w-[12rem] lg:max-w-[15rem] hidden lg:block pb-36 shadow-2xl">
         <img src={logo} alt="" srcset="" />
         <button className="flex items-center space-x-2 p-3  hover:text-[#838383]">
           <HomeIcon />

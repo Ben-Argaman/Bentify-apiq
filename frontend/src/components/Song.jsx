@@ -19,7 +19,7 @@ const Song = ({ track, index, albumImg }) => {
             className="h-20 w-20"
           />
           <div>
-            <p className="w-36 lg:w-64 truncate text-black">
+            <p className="w-36 lg:w-64  truncate text-black">
               {track.result ? track.result.title : track.name}
             </p>
             <p className="w-40 truncate">

@@ -33,7 +33,7 @@ const AlbumDash = ({ albums, loadAlbumTracks }) => {
       <div className="relative flex items-center pt-6">
         <div
           id={"slider"}
-          className="w-full h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide "
+          className=" h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide "
         >
           {dashItems &&
             dashItems.map((item) => {
