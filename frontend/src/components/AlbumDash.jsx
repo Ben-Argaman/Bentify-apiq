@@ -33,7 +33,7 @@ const AlbumDash = ({ albums, loadAlbumTracks }) => {
       <div className="relative flex items-center pt-6">
         <div
           id={"slider"}
-          className=" h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide "
+          className=" h-full overflow-x-scroll whitespace-nowrap scroll-smooth scrollbar-hide space-x-1"
         >
           {dashItems &&
             dashItems.map((item) => {
@@ -44,10 +44,10 @@ const AlbumDash = ({ albums, loadAlbumTracks }) => {
                     onClick={() => {
                       loadAlbumTracks(item.artist.name, item.name);
                     }}
-                    className="w-[160px] sm:w-[280px] md:w-[240px] shadow-2xl lg:w-[280px] p-1 inline-block relative cursor-pointer "
+                    className="w-[250px] h-[300px] rounded-md md:w-[240px] shadow-2xl lg:w-[280px]  inline-block relative cursor-pointer "
                   >
                     <img
-                      className="w-full h-auto block"
+                      className="w-full h-full block rounded-md"
                       src={Object.values(item.image[3])[0]}
                       alt=""
                     />

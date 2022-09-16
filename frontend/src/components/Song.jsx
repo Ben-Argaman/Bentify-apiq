@@ -5,7 +5,7 @@ const Song = ({ track, index, albumImg }) => {
 
   return (
     <>
-      <div className="grid grid-cols-2 text-gray-500 h-24 p-2 cursor-pointer hover:bg-gray-200 text-lg">
+      <div className="grid grid-cols-2 text-gray-500 h-24 p-2 cursor-pointer hover:bg-gray-900 text-lg">
         <div className="flex items-center space-x-4">
           <p>{index + 1}</p>
           <img
@@ -19,7 +19,7 @@ const Song = ({ track, index, albumImg }) => {
             className="h-20 w-20"
           />
           <div>
-            <p className="w-36 lg:w-64  truncate text-black">
+            <p className="w-36 lg:w-64 truncate text-white">
               {track.result ? track.result.title : track.name}
             </p>
             <p className="w-40 truncate">

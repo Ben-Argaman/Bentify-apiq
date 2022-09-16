@@ -8,30 +8,34 @@ import { Link } from "react-router-dom";
 const SideBar = () => {
   return (
     <>
-      <div className="p-5 text-xs lg:text-base font-semibold text-[#5c5656]	 border-r border-gray-100 bg-[#fff] overflow-y-scroll w-full h-screen sm:max-w-[12rem] lg:max-w-[15rem] hidden lg:block pb-36 shadow-2xl">
-        <img src={logo} alt="" srcset="" />
-        <button className="flex items-center space-x-2 p-3  hover:text-[#838383]">
-          <HomeIcon />
-          <p>Home</p>
-        </button>
+      <div className="p-5 text-xs lg:text-base font-semibold text-[#fff] border-r border-slate-900 bg-[#000] overflow-y-scroll w-full h-screen sm:max-w-[12rem] lg:max-w-[15rem] hidden lg:block pb-36 shadow-2xl">
+        <div>
+          <img src={logo} alt="" srcset="" />
+        </div>
+        <div className="mt-4">
+          <button className="flex items-center space-x-2 p-3  hover:text-[#838383]">
+            <HomeIcon />
+            <p>Home</p>
+          </button>
 
-        <a
-          href="/search"
-          className="flex items-center space-x-2 p-3 hover:text-[#838383]"
-        >
-          <SearchIcon />
-          <p>Search</p>
-        </a>
+          <a
+            href="/search"
+            className="flex items-center space-x-2 p-3 hover:text-[#838383]"
+          >
+            <SearchIcon />
+            <p>Search</p>
+          </a>
 
-        <button className="flex items-center space-x-2 p-3 hover:text-[#838383]">
-          <LibraryMusicIcon />
-          <p>Your Libary</p>
-        </button>
+          <button className="flex items-center space-x-2 p-3 hover:text-[#838383]">
+            <LibraryMusicIcon />
+            <p>Your Libary</p>
+          </button>
 
-        <button className="flex items-center space-x-2 p-3 hover:text-[#838383]">
-          <FeaturedPlayListIcon />
-          <p>Playlists</p>
-        </button>
+          <button className="flex items-center space-x-2 p-3 hover:text-[#838383]">
+            <FeaturedPlayListIcon />
+            <p>Playlists</p>
+          </button>
+        </div>
       </div>
     </>
   );

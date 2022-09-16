@@ -86,7 +86,7 @@ const HomeScreen = () => {
           <h2 className="hidden lg:block">ben argaman</h2>
         </div>
       </header>{" "}
-      <div className="pt-16 md:mx-14 lg:mx-16 space-y-1 shadow-xl">
+      <div className="pt-16 px-2 md:px-0 md:mx-14 lg:mx-16 space-y-1 shadow-xl">
         {artistAlbums.length > 1 && (
           <AlbumDash albums={artistAlbums} loadAlbumTracks={loadAlbumTracks} />
         )}
@@ -96,7 +96,7 @@ const HomeScreen = () => {
           ? searchResults.response.hits.map((track, index) => {
               return (
                 <div
-                  className="border-b-1 "
+                  className="border-b-1 border-slate-900 "
                   key={index}
                   onClick={() => {
                     setChosenTrack(track);
@@ -118,7 +118,7 @@ const HomeScreen = () => {
               return (
                 <div
                   key={index}
-                  className="border-b-1 "
+                  className="border-b-1 border-slate-900 "
                   onClick={() => {
                     getSongId(track && `${track.name} ${track.artist.name}`);
                     setChosenTrack(track);

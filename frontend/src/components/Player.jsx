@@ -3,7 +3,7 @@ import React from "react";
 const Player = ({ track, chosenSong, albumImg }) => {
   return (
     track && (
-      <div className="h-24 bg-gradient-to-b from-white to-gray-300 pb-8 md:pb-32 pt-4 grid grid-cols-3 text-sm md:text-base px-2 text-gray-500  md:px-8">
+      <div className="h-24 bg-gradient-to-b from-black to-[#040c1c] pb-8 md:pb-32 pt-4 grid grid-cols-3 text-sm md:text-base px-2 text-gray-500  md:px-8">
         <div className="flex items-center space-x-4">
           <img
             className="hidden md:inline h-24 w-24"
@@ -15,7 +15,7 @@ const Player = ({ track, chosenSong, albumImg }) => {
             alt=""
           />
           <div>
-            <h3 className="text-black font-semibold">
+            <h3 className="text-white font-semibold">
               {track.result ? track.result.title : track.name}
             </h3>
             <p>
@@ -29,10 +29,11 @@ const Player = ({ track, chosenSong, albumImg }) => {
             width="50"
             src={`https://www.youtube.com/embed/${
               chosenSong && chosenSong
-            }?origin=https://ba-music.herokuapp.com?autoplay=1&showinfo=0&modestbranding=1&fs=0`}
+            }?origin=https://ba-music.herokuapp.com&autoplay=1&showinfo=0&modestbranding=1&fs=0`}
             id="ytplayer"
             frameBorder="0"
             allowFullScreen="1"
+            autoplay="1"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             className="rounded-full object-contain object-center"
           ></iframe>
