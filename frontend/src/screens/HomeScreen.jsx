@@ -26,8 +26,9 @@ const HomeScreen = () => {
   };
 
   const getSongId = async (query) => {
-    const { data } = await axios.get(`http://localhost:5002/api/${query}`);
-    console.log(data);
+    const { data } = await axios.get(
+      `https://ba-music.herokuapp.com/api/${query}`
+    );
     setChosenSong(data);
   };
 
