@@ -53,7 +53,7 @@ const HomeScreen = () => {
   }, [searchKey]);
 
   return (
-    <div className="flex-grow mt-5 h-screen ml-auto overflow-y-scroll">
+    <div className="flex-grow mt-5 h-screen ml-auto overflow-y-scroll scroll-smooth	">
       <div className="absolute lg:left-auto">
         <div className="relative w-full max-w-3xl px-6 z-50	">
           <div className="absolute h-10 mt-1 left-0 top-0 flex items-center pl-10">
@@ -71,7 +71,7 @@ const HomeScreen = () => {
             type="search"
             placeholder="search"
             className="block w-full  bg-gray-200 focus:outline-none focus:bg-white focus:shadow-md text-gray-700 font-bold rounded-full pl-12 pr-4 py-3"
-            onKeyPress={(e) => setSearchKey(e.target.value)}
+            onChange={(e) => setSearchKey(e.target.value)}
           />
         </div>
       </div>
@@ -86,12 +86,12 @@ const HomeScreen = () => {
           <h2 className="hidden lg:block">ben argaman</h2>
         </div>
       </header>{" "}
-      <div className="pt-16 py-auto mx-16 space-y-1 ">
+      <div className="pt-16 lg:mx-16 space-y-1 shadow-xl">
         {artistAlbums.length > 1 && (
           <AlbumDash albums={artistAlbums} loadAlbumTracks={loadAlbumTracks} />
         )}
       </div>
-      <div className="px-8 flex flex-col  w-full py-6">
+      <div className="lg:px-8 px-2 flex flex-col  w-full py-6">
         {searchResults.response
           ? searchResults.response.hits.map((track, index) => {
               return (

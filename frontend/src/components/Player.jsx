@@ -3,7 +3,7 @@ import React from "react";
 const Player = ({ track, chosenSong, albumImg }) => {
   return (
     track && (
-      <div className="h-24 bg-gradient-to-b from-white to-gray-300 pb-8 md:pb-32 pt-4 grid grid-cols-3 text-xs md:text-base px-2 text-gray-500  md:px-8">
+      <div className="h-24 bg-gradient-to-b from-white to-gray-300 pb-8 md:pb-32 pt-4 grid grid-cols-3 text-sm md:text-base px-2 text-gray-500  md:px-8">
         <div className="flex items-center space-x-4">
           <img
             className="hidden md:inline h-24 w-24"
@@ -25,18 +25,16 @@ const Player = ({ track, chosenSong, albumImg }) => {
         </div>
         <div className="mx-auto my-auto">
           <iframe
-            height="40"
-            width="40"
-            allowfullscreen="1"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            height="50"
+            width="50"
             src={`https://www.youtube.com/embed/${
               chosenSong && chosenSong
-            }?origin=https://ba-music.herokuapp.com&showinfo=0&autoplay=1&video-id=youtube_video_id&enablejsapi=1&widgetid=1&color=white&modestbranding=1&rel=0`}
-            data-title="video_title"
-            title="video_title"
+            }?origin=https://ba-music.herokuapp.com?autoplay=1&showinfo=0&modestbranding=1&fs=0`}
+            id="ytplayer"
+            frameBorder="0"
+            allowFullScreen="1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             className="rounded-full object-contain object-center"
-            frameborder="0"
-            autoPlay="1"
           ></iframe>
         </div>
       </div>

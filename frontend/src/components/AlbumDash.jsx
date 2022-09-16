@@ -44,7 +44,7 @@ const AlbumDash = ({ albums, loadAlbumTracks }) => {
                     onClick={() => {
                       loadAlbumTracks(item.artist.name, item.name);
                     }}
-                    className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] p-1 inline-block relative cursor-pointer"
+                    className="w-[160px] sm:w-[280px] md:w-[240px] shadow-2xl lg:w-[280px] p-1 inline-block relative cursor-pointer "
                   >
                     <img
                       className="w-full h-auto block"
