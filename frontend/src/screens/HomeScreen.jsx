@@ -42,7 +42,6 @@ const HomeScreen = () => {
     const { data } = await axios.get(
       `http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=e1c393f9c0cc727b780db859810b26bc&artist=${artist}&album=${album}&format=json`
     );
-    console.log(data);
     data.album.tracks.track.length > 2 && setSearchResults(data.album);
   };
 
@@ -56,7 +55,7 @@ const HomeScreen = () => {
   return (
     <div className="flex-grow mt-5 ml-auto overflow-y-scroll h-screen">
       <div className="absolute lg:left-auto">
-        <div className="relative w-full max-w-3xl px-6 z-50	">
+        <div className="relative w-full max-w-3xl px-6 z-50">
           <div className="absolute h-10 mt-1 left-0 top-0 flex items-center pl-10">
             <svg
               className="h-4 w-4 fill-current text-gray-600"
