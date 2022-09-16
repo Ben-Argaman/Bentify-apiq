@@ -17,8 +17,7 @@ function App() {
         <SideBar />
         <Router>
           <Routes>
-            <Route path="/" element={<LandingScreen />} />
-            <Route path="/search" element={<HomeScreen />} />
+            <Route path="/" element={<HomeScreen />} />
           </Routes>
         </Router>
       </main>
