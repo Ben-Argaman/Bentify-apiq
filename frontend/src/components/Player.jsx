@@ -25,8 +25,8 @@ const Player = ({ track, chosenSong, albumImg }) => {
         </div>
         <div className="mx-auto my-auto">
           <iframe
-            height="30"
-            width="30"
+            height="40"
+            width="40"
             allowfullscreen="1"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             src={`https://www.youtube.com/embed/${
