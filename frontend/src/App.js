@@ -13,7 +13,6 @@ function App() {
   return (
     <div className="App h-screen overflow-hidden">
       <main className="flex">
-        <SideBar />
         <Router>
           <Routes>
             <Route path="/" element={<HomeScreen />} />

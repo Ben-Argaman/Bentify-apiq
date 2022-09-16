@@ -32,7 +32,6 @@ const Song = ({ track, index, albumImg }) => {
           <p className="w-40 hidden md:inline">
             {track.albumName ? track.albumName : albumImg && albumImg.name}
           </p>
-          <p>{fmtMSS(track.duration)}</p>
         </div>
       </div>
     </>
