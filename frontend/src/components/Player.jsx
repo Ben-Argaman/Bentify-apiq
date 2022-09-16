@@ -3,7 +3,7 @@ import React from "react";
 const Player = ({ track, chosenSong, albumImg }) => {
   return (
     track && (
-      <div className="h-24 bg-gradient-to-b from-black to-[#040c1c] pb-8 md:pb-32 pt-4 grid grid-cols-3 text-sm md:text-base px-2 text-gray-500  md:px-8">
+      <div className="h-44 bg-gradient-to-b from-black to-[#040c1c] pb-4 grid grid-cols-3 text-sm md:text-base px-2 text-gray-500  md:px-8">
         <div className="flex items-center space-x-4">
           <img
             className="hidden md:inline h-24 w-24"

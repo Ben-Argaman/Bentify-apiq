@@ -91,7 +91,7 @@ const HomeScreen = () => {
           <AlbumDash albums={artistAlbums} loadAlbumTracks={loadAlbumTracks} />
         )}
       </div>
-      <div className="lg:px-8 px-2 flex flex-col w-full py-6">
+      <div className="lg:px-8 px-2 flex flex-col w-full pt-6">
         {searchResults.response
           ? searchResults.response.hits.map((track, index) => {
               return (
