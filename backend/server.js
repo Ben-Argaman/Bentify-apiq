@@ -8,7 +8,7 @@ import express from "express";
 const app = express();
 app.use(cors());
 
-app.get("/api/:title", async (req, res) => {
+app.get("/api/:title", cors(), async (req, res) => {
   const videos = await yt.search(req.params.title);
   res.json(videos[0].id.videoId);
 });

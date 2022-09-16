@@ -27,6 +27,7 @@ const HomeScreen = () => {
 
   const getSongId = async (query) => {
     const { data } = await axios.get(`http://localhost:5002/api/${query}`);
+    console.log(data);
     setChosenSong(data);
   };
 
