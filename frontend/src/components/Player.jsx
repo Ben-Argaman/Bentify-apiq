@@ -24,19 +24,20 @@ const Player = ({ track, chosenSong, albumImg }) => {
           </div>
         </div>
         <div className="mx-auto my-auto">
-          <embed
-            id="ytplayer"
-            frameBorder="0"
-            allowFullScreen="1"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            width="30"
-            className="rounded-full object-contain object-center"
+          <iframe
             height="30"
-            src={`http://www.youtube.com/v/${
+            width="30"
+            allowfullscreen="1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            src={`https://www.youtube.com/embed/${
               chosenSong && chosenSong
-            }?autoplay=1&showinfo=0&modestbranding=1&showinfo=0&fs=0
-          `}
-          ></embed>
+            }?origin=https://localhost:3000.com&showinfo=0&autoplay=1&video-id=youtube_video_id&enablejsapi=1&widgetid=1&color=white&modestbranding=1&rel=0`}
+            data-title="video_title"
+            title="video_title"
+            className="rounded-full object-contain object-center"
+            frameborder="0"
+            autoPlay="1"
+          ></iframe>
         </div>
       </div>
     )

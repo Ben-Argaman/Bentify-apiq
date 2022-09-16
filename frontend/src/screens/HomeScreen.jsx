@@ -14,17 +14,11 @@ const HomeScreen = () => {
   const [chosenTrack, setChosenTrack] = useState("");
   const [artistAlbums, setArtistAlbums] = useState([]);
   const token =
-    "n_oeOFJwVKW2NbGCEBxiDYw0VyHr0RhIw6PEcBrhGRptXkrCT_5OncBpyaUd-4J7";
+    "HzD3tlJ238gNcFQnrToIEqUXAiqy8mSroJcl3G_lEG-PA_2AX5h-qvSm4wAMb0ef";
 
   const getSong = async () => {
     const { data } = await axios.get(
-      `https://api.genius.com/search?q=${searchKey}}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Access-Control-Allow-Origin": "*",
-        },
-      }
+      `https://api.genius.com/search?q=${searchKey}&access_token=${token}`
     );
     if (!searchKey == "") {
       setSearchResults(data);

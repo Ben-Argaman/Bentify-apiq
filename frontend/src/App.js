@@ -8,7 +8,6 @@ import {
   Route,
   Link,
 } from "react-router-dom";
-import LandingScreen from "./screens/LandingScreen";
 
 function App() {
   return (
