@@ -75,7 +75,7 @@ const HomeScreen = () => {
             type="search"
             placeholder="search"
             className="block w-full  bg-gray-200 focus:outline-none focus:bg-white focus:shadow-md text-gray-700 font-bold rounded-full pl-12 pr-4 py-3"
-            onKeyUp={(e) => setSearchKey(e.target.value)}
+            onKeyPress={(e) => setSearchKey(e.target.value)}
           />
         </div>
       </div>
