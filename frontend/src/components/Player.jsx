@@ -31,7 +31,7 @@ const Player = ({ track, chosenSong, albumImg }) => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             src={`https://www.youtube.com/embed/${
               chosenSong && chosenSong
-            }?origin=https://localhost:3000.com&showinfo=0&autoplay=1&video-id=youtube_video_id&enablejsapi=1&widgetid=1&color=white&modestbranding=1&rel=0`}
+            }?origin=https://ba-music.herokuapp.com&showinfo=0&autoplay=1&video-id=youtube_video_id&enablejsapi=1&widgetid=1&color=white&modestbranding=1&rel=0`}
             data-title="video_title"
             title="video_title"
             className="rounded-full object-contain object-center"
