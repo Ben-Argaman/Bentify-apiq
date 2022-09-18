@@ -28,7 +28,7 @@ app.get("/api/:title", cors(), async (req, res) => {
     const videoSize = fs.statSync(
       __dirname + "/backend/data/" + videos[0].id.videoId + ".mp3"
     ).size;
-    const range = req.headers.range;
+    let range = req.headers.range;
     if (!range) range = "bytes=0-";
 
     // Parse Range
