@@ -23,9 +23,7 @@ const Player = ({ track, chosenSong, albumImg, source }) => {
       audioPlayer.current.pause();
     }
   };
-  useEffect(() => {
-    audioPlayer.paused ? setIsPlaying(false) : setIsPlaying(true);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     track && (
