@@ -28,8 +28,25 @@ app.get("/api/:title", cors(), async (req, res) => {
     const videoSize = fs.statSync(
       __dirname + "/backend/data/" + videos[0].id.videoId + ".mp3"
     ).size;
-    let range = req.headers.range;
-    if (!range) range = "bytes=0-";
+
+    const range = req.headers.range;
+    if (range) {
+      const bytesPrefix = "bytes=";
+      if (range.startsWith(bytesPrefix)) {
+        const bytesRange = range.substring(bytesPrefix.length);
+        const parts = bytesRange.split("-");
+        if (parts.length === 2) {
+          const rangeStart = parts[0] && parts[0].trim();
+          if (rangeStart && rangeStart.length > 0) {
+            options.start = start = parseInt(rangeStart);
+          }
+          const rangeEnd = parts[1] && parts[1].trim();
+          if (rangeEnd && rangeEnd.length > 0) {
+            options.end = end = parseInt(rangeEnd);
+          }
+        }
+      }
+    }
 
     // Parse Range
     // Example: "bytes=32324-"
