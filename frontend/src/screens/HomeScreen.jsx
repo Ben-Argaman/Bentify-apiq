@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 import axios from "axios";
 import Song from "../components/Song";
@@ -15,6 +15,8 @@ const HomeScreen = () => {
   const [chosenTrack, setChosenTrack] = useState("");
   const [artistAlbums, setArtistAlbums] = useState([]);
   const [trackHistory, setTrackHistory] = useState([]);
+  const [query, setQuery] = useState("");
+
   const token =
     "HzD3tlJ238gNcFQnrToIEqUXAiqy8mSroJcl3G_lEG-PA_2AX5h-qvSm4wAMb0ef";
 
@@ -25,13 +27,6 @@ const HomeScreen = () => {
     if (!searchKey == "") {
       setSearchResults(data);
     }
-  };
-
-  const getSongId = async (query) => {
-    const { data } = await axios.get(
-      `https://ba-music.herokuapp.com/api/${query}`
-    );
-    setChosenSong(data);
   };
 
   const getArtistAlbums = async (artist) => {
@@ -98,12 +93,12 @@ const HomeScreen = () => {
             />
           )}
         </div>
-        <div className="lg:px-8 px-2 flex flex-col w-full pt-6 h-auto">
+        <div className="lg:px-8 px-2 flex flex-col w-full pt-6 ">
           {searchResults.response
             ? searchResults.response.hits.map((track, index) => {
                 return (
                   <div
-                    className="border-b-1 border-slate-900 "
+                    className="border-b-1 border-slate-900"
                     key={index}
                     onClick={() => {
                       setChosenTrack(track);
@@ -112,7 +107,7 @@ const HomeScreen = () => {
                           setTrackHistory((prev) => [...prev, track]);
                       }
 
-                      getSongId(
+                      setQuery(
                         track.result
                           ? `${track.result.title} ${track.result.primary_artist.name}`
                           : track.name
@@ -136,7 +131,7 @@ const HomeScreen = () => {
                         !trackHistory.includes(track) &&
                           setTrackHistory((prev) => [...prev, track]);
                       }
-                      getSongId(track && `${track.name} ${track.artist.name}`);
+                      setQuery(`${track.name} ${track.artist.name}`);
                       setChosenTrack(track);
                     }}
                   >
@@ -152,7 +147,7 @@ const HomeScreen = () => {
         <div className="sticky bottom-0 ">
           <Player
             track={chosenTrack}
-            chosenSong={chosenSong}
+            source={`http://localhost:5002/api/${query}`}
             albumImg={searchResults}
           />
         </div>

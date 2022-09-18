@@ -4,15 +4,60 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 dotenv.config();
 import express from "express";
+import ytdl from "ytdl-core";
+import fs from "fs";
 
 const app = express();
 app.use(cors());
+const __dirname = path.resolve();
 
 app.get("/api/:title", cors(), async (req, res) => {
   const videos = await yt.search(req.params.title);
-  res.json(videos[0].id.videoId);
+  const download = ytdl(
+    `https://www.youtube.com/watch?v=${videos[0].id.videoId}`,
+    { filter: "audioonly" }
+  );
+  var videoWritableStream = fs.createWriteStream(
+    __dirname + "/backend/data/" + videos[0].id.videoId + ".mp3"
+  );
+  let stream = download.pipe(videoWritableStream);
+
+  stream.on("finish", () => {
+    const videoPath =
+      __dirname + "/backend/data/" + videos[0].id.videoId + ".mp3";
+    const videoSize = fs.statSync(
+      __dirname + "/backend/data/" + videos[0].id.videoId + ".mp3"
+    ).size;
+    const range = req.headers.range;
+    if (!range) {
+      res.status(400).send("Requires Range header");
+    }
+
+    // Parse Range
+    // Example: "bytes=32324-"
+    const CHUNK_SIZE = 10 ** 100; // 1MB
+    const start = Number(range.replace(/\D/g, ""));
+    const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
+
+    // Create headers
+    const contentLength = end - start + 1;
+    const headers = {
+      "Content-Range": `bytes ${start}-${end}/${videoSize}`,
+      "Accept-Ranges": "bytes",
+      "Content-Length": contentLength,
+      "Content-Type": "audio/mp3",
+    };
+
+    // HTTP Status 206 for Partial Content
+    res.writeHead(206, headers);
+
+    // create video read stream for this particular chunk
+    const videoStream = fs.createReadStream(videoPath, { start, end });
+
+    // Stream the video chunk to the client
+    videoStream.pipe(res);
+  });
 });
-const __dirname = path.resolve();
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/frontend/build")));
   app.get("*", (req, res) =>
