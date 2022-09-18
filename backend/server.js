@@ -29,9 +29,7 @@ app.get("/api/:title", cors(), async (req, res) => {
       __dirname + "/backend/data/" + videos[0].id.videoId + ".mp3"
     ).size;
     const range = req.headers.range;
-    if (!range) {
-      res.status(400).send("Requires Range header");
-    }
+    if (!range) range = "bytes=0-";
 
     // Parse Range
     // Example: "bytes=32324-"
