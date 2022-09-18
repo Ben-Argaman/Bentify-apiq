@@ -54,12 +54,12 @@ const Player = ({ track, isSongClicked, albumImage, source }) => {
             <RewindIcon className="w-5 h-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out" />
             {isPlaying ? (
               <PauseIcon
-                className="w-10 h-10 cursor-pointer hover:scale-125 transition transform duration-100 ease-out text-[#FCF9C6]"
+                className="w-14 h-14 cursor-pointer hover:scale-125 transition transform duration-100 ease-out text-[#FCF9C6]"
                 onClick={handlePlayPause}
               />
             ) : (
               <PlayIcon
-                className="w-10 h-10 cursor-pointer hover:scale-125 transition transform duration-100 ease-out"
+                className="w-14 h-14 cursor-pointer hover:scale-125 transition transform duration-100 ease-out"
                 onClick={handlePlayPause}
               />
             )}

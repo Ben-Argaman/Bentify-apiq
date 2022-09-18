@@ -11,7 +11,7 @@ const SideBar = ({ recentPlayedTracks }) => {
 
   return (
     <>
-      <div className="p-5 text-xs lg:text-base font-semibold text-[#fff]  bg-[#000] overflow-y-scroll scrollbar-hide w-full h-screen sm:max-w-[12rem] lg:max-w-[15rem] hidden lg:block pb-36 shadow-2xl">
+      <div className="p-5 text-xs lg:text-base font-semibold text-[#fff]  bg-[#000] overflow-y-scroll w-full h-screen sm:max-w-[12rem] lg:max-w-[15rem] hidden lg:block pb-36 shadow-2xl">
         <div>
           <img src={logo} alt="" srcset="" />
         </div>
