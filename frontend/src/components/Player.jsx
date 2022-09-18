@@ -89,7 +89,7 @@ const Player = ({ track, isSongClicked, albumImage, source }) => {
           </div>
         </div>
         <audio
-          playsinline
+          autoPlay
           ref={audioPlayer}
           name="media"
           src={source}
