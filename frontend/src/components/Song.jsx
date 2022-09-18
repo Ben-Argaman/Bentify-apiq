@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { fmtMSS, millisToMinutesAndSeconds } from "../hooks/time";
 
-const Song = ({ track, index, albumImg }) => {
+const Song = ({ track, index, albumImage }) => {
   useEffect(() => {}, [track]);
 
   return (
@@ -13,7 +13,7 @@ const Song = ({ track, index, albumImg }) => {
             src={
               track.result
                 ? track.result.header_image_thumbnail_url
-                : Object.values(albumImg.image[2])[1]
+                : albumImage
             }
             alt=""
             srcSet=""
@@ -30,7 +30,7 @@ const Song = ({ track, index, albumImg }) => {
         </div>
         <div className="flex items-center justify-between ml-auto md:ml-0">
           <p className="w-40 hidden md:inline">
-            {track.albumName ? track.albumName : albumImg && albumImg.name}
+            {track.albumName && track.albumName}
           </p>
         </div>
       </div>

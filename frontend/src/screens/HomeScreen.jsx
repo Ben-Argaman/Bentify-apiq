@@ -11,12 +11,12 @@ import SideBar from "../components/SideBar";
 const HomeScreen = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchKey, setSearchKey] = useState("");
-  const [chosenSong, setChosenSong] = useState("");
   const [chosenTrack, setChosenTrack] = useState("");
   const [artistAlbums, setArtistAlbums] = useState([]);
   const [trackHistory, setTrackHistory] = useState([]);
   const [query, setQuery] = useState("");
-
+  const [songImage, setSongImage] = useState("");
+  const [songClicked, setSongClicked] = useState(false);
   const token =
     "HzD3tlJ238gNcFQnrToIEqUXAiqy8mSroJcl3G_lEG-PA_2AX5h-qvSm4wAMb0ef";
 
@@ -42,6 +42,17 @@ const HomeScreen = () => {
     data.album.tracks.track.length > 2 && setSearchResults(data.album);
   };
 
+  const playSongFromHistory = (track) => {
+    setQuery(
+      track.result
+        ? `${track.result.title} ${track.result.primary_artist.name}`
+        : track.name
+    );
+    setSongClicked(true);
+    setChosenTrack(track);
+    getArtistAlbums(track.result.primary_artist.name);
+  };
+
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       getSong();
@@ -51,7 +62,6 @@ const HomeScreen = () => {
 
   return (
     <>
-      <SideBar recentPlayedTracks={trackHistory} albumImg={searchResults} />
       <div className="flex-grow mt-5 ml-auto overflow-y-scroll h-screen">
         <div className="absolute lg:left-auto">
           <div className="relative w-full max-w-3xl px-6 z-50">
@@ -101,6 +111,7 @@ const HomeScreen = () => {
                     className="border-b-1 border-slate-900"
                     key={index}
                     onClick={() => {
+                      setSongClicked(true);
                       setChosenTrack(track);
                       {
                         !trackHistory.includes(track) &&
@@ -122,23 +133,27 @@ const HomeScreen = () => {
             : searchResults.tracks &&
               searchResults.tracks.track.length > 1 &&
               searchResults.tracks.track.map((track, index) => {
+                track.image = Object.values(searchResults.image[2])[1];
                 return (
                   <div
                     key={index}
                     className="border-b-1 border-slate-900 "
                     onClick={() => {
+                      setSongClicked(true);
+
                       {
                         !trackHistory.includes(track) &&
                           setTrackHistory((prev) => [...prev, track]);
                       }
                       setQuery(`${track.name} ${track.artist.name}`);
                       setChosenTrack(track);
+                      setSongImage(track.image);
                     }}
                   >
                     <Song
                       track={track}
+                      albumImage={track.image}
                       index={index}
-                      albumImg={searchResults}
                     />
                   </div>
                 );
@@ -146,10 +161,10 @@ const HomeScreen = () => {
         </div>
         <div className="sticky bottom-0 ">
           <Player
-            autoPlay
             track={chosenTrack}
-            source={`http://ba-music.herokuapp.com/api/${query}`}
-            albumImg={searchResults}
+            albumImage={songImage}
+            source={`http://localhost:5002/api/${query}`}
+            isSongClicked={songClicked}
           />
         </div>
       </div>

@@ -11,7 +11,7 @@ import {
 } from "@heroicons/react/solid";
 import { useEffect } from "react";
 
-const Player = ({ track, chosenSong, albumImg, source }) => {
+const Player = ({ track, isSongClicked, albumImage, source }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(70);
   const audioPlayer = useRef();
@@ -23,7 +23,9 @@ const Player = ({ track, chosenSong, albumImg, source }) => {
       audioPlayer.current.pause();
     }
   };
-  useEffect(() => {}, []);
+  useEffect(() => {
+    isSongClicked && setIsPlaying(true);
+  }, [isSongClicked]);
 
   return (
     track && (
@@ -35,7 +37,7 @@ const Player = ({ track, chosenSong, albumImg, source }) => {
               src={
                 track.result
                   ? track.result.header_image_thumbnail_url
-                  : albumImg.image && Object.values(albumImg.image[2])[1]
+                  : albumImage
               }
               alt=""
             />
