@@ -25,8 +25,7 @@ const Player = ({ track, chosenSong, albumImg, source }) => {
   };
   useEffect(() => {
     audioPlayer.paused ? setIsPlaying(false) : setIsPlaying(true);
-    audioPlayer.current.volume = volume * 0.01;
-  }, [volume]);
+  }, []);
 
   return (
     track && (
@@ -70,13 +69,14 @@ const Player = ({ track, chosenSong, albumImg, source }) => {
           <div className="flex items-center space-x-3 md:space-x-4 justify-end p-5">
             <VolumeDownIcon
               className="w-5 h-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out"
-              onClick={() => volume > 0 && setVolume(volume - 10)}
+              // onClick={() => volume > 0 && setVolume(volume - 10)}
             />
             <input
               type="range"
               value={volume}
               onChange={(e) => {
                 setVolume(Number(e.target.value));
+                audioPlayer.current.volume = volume * 0.01;
               }}
               min={0}
               max={100}
@@ -84,7 +84,7 @@ const Player = ({ track, chosenSong, albumImg, source }) => {
             />
             <VolumeUpIcon
               className="w-5 h-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out"
-              onClick={() => volume < 100 && setVolume(volume + 10)}
+              // onClick={() => volume < 100 && setVolume(volume + 10)}
             />
           </div>
         </div>
