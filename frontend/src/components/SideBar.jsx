@@ -44,7 +44,10 @@ const SideBar = ({ recentPlayedTracks, albumImg }) => {
 
         {recentPlayedTracks.map((track, index) => {
           return (
-            <div className="grid grid-cols-2 text-gray-500 h-24 p-2 cursor-pointer hover:bg-gray-900 text-sm overflow-hidden scroll-smooth scrollbar-hide ">
+            <div
+              key={index}
+              className="grid grid-cols-2 text-gray-500 h-24 p-2 cursor-pointer hover:bg-gray-900 text-sm overflow-hidden scroll-smooth scrollbar-hide "
+            >
               <div className="flex items-center space-x-4">
                 <p>{index + 1}</p>
                 <img
