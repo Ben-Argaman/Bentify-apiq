@@ -95,7 +95,7 @@ const HomeScreen = () => {
             <h2 className="hidden lg:block">ben argaman</h2>
           </div>
         </header>{" "}
-        <div className="pt-16 px-2 md:px-0 md:mx-14 lg:mx-16 space-y-1 shadow-xl">
+        <div className="pt-16 px-2 md:px-0 md:mx-14 lg:mx-16 space-y-1 shadow-2xl">
           {artistAlbums.length > 1 && (
             <AlbumDash
               albums={artistAlbums}
@@ -103,15 +103,14 @@ const HomeScreen = () => {
             />
           )}
         </div>
-        <div className="lg:px-8 px-2 flex flex-col w-full pt-6 ">
+        <div className="lg:px-8 px-2 flex flex-col w-full pt-6 min-h-full ">
           {searchResults.response
             ? searchResults.response.hits.map((track, index) => {
                 return (
                   <div
-                    className="border-b-1 border-slate-900"
+                    className="border-b-1 border-[#272626]"
                     key={index}
                     onClick={() => {
-                      setSongClicked(true);
                       setChosenTrack(track);
                       {
                         !trackHistory.includes(track) &&
@@ -123,6 +122,7 @@ const HomeScreen = () => {
                           ? `${track.result.title} ${track.result.primary_artist.name}`
                           : track.name
                       );
+                      setSongClicked(!songClicked);
                       getArtistAlbums(track.result.primary_artist.name);
                     }}
                   >
@@ -137,14 +137,13 @@ const HomeScreen = () => {
                 return (
                   <div
                     key={index}
-                    className="border-b-1 border-slate-900 "
+                    className="border-b-1 border-[#272626] "
                     onClick={() => {
-                      setSongClicked(true);
-
                       {
                         !trackHistory.includes(track) &&
                           setTrackHistory((prev) => [...prev, track]);
                       }
+                      setSongClicked(!songClicked);
                       setQuery(`${track.name} ${track.artist.name}`);
                       setChosenTrack(track);
                       setSongImage(track.image);
@@ -163,7 +162,7 @@ const HomeScreen = () => {
           <Player
             track={chosenTrack}
             albumImage={songImage}
-            source={`http://ba-music.herokuapp.com/api/${query}`}
+            source={`http://ba-music.herokuapp.com/api/${query} audio`}
             isSongClicked={songClicked}
           />
         </div>

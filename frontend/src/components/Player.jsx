@@ -15,6 +15,7 @@ const Player = ({ track, isSongClicked, albumImage, source }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(70);
   const audioPlayer = useRef();
+
   const handlePlayPause = () => {
     setIsPlaying(!isPlaying);
     if (!isPlaying) {
@@ -24,13 +25,13 @@ const Player = ({ track, isSongClicked, albumImage, source }) => {
     }
   };
   useEffect(() => {
-    isSongClicked && setIsPlaying(true);
+    setIsPlaying(true);
   }, [isSongClicked]);
 
   return (
     track && (
       <div className="mx-auto my-auto">
-        <div className="h-36 bg-gradient-to-b from-gray-900 to-black text-white grid grid-cols-3 text-sm md:text-base px-2 md:px-8">
+        <div className="h-36 bg-[#111111] text-white grid grid-cols-3 text-sm md:text-base px-2 md:px-8">
           <div className="flex items-center space-x-4 pb-4">
             <img
               className="hidden md:inline h-20 w-20"
@@ -53,7 +54,7 @@ const Player = ({ track, isSongClicked, albumImage, source }) => {
             <RewindIcon className="w-5 h-5 cursor-pointer hover:scale-125 transition transform duration-100 ease-out" />
             {isPlaying ? (
               <PauseIcon
-                className="w-10 h-10 cursor-pointer hover:scale-125 transition transform duration-100 ease-out text-[#18D860]"
+                className="w-10 h-10 cursor-pointer hover:scale-125 transition transform duration-100 ease-out text-[#FCF9C6]"
                 onClick={handlePlayPause}
               />
             ) : (
