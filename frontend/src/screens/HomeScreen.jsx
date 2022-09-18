@@ -147,7 +147,7 @@ const HomeScreen = () => {
         <div className="sticky bottom-0 ">
           <Player
             track={chosenTrack}
-            source={`https://ba-music.herokuapp.com/api/${query}`}
+            source={`http://localhost:5002/api/${query}`}
             albumImg={searchResults}
           />
         </div>

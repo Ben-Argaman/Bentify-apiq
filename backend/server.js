@@ -30,6 +30,10 @@ app.get("/api/:title", cors(), async (req, res) => {
     ).size;
 
     const range = req.headers.range;
+    const options = {};
+
+    let start;
+    let end;
     if (range) {
       const bytesPrefix = "bytes=";
       if (range.startsWith(bytesPrefix)) {
@@ -47,30 +51,66 @@ app.get("/api/:title", cors(), async (req, res) => {
         }
       }
     }
+    res.setHeader("content-type", "audio/mp3");
 
-    // Parse Range
-    // Example: "bytes=32324-"
-    const CHUNK_SIZE = 10 ** 100; // 1MB
-    const start = Number(range.replace(/\D/g, ""));
-    const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
+    fs.stat(videoPath, (err, stat) => {
+      if (err) {
+        console.error(`File stat error for ${videoPath}.`);
+        console.error(err);
+        res.sendStatus(500);
+        return;
+      }
 
-    // Create headers
-    const contentLength = end - start + 1;
-    const headers = {
-      "Content-Range": `bytes ${start}-${end}/${videoSize}`,
-      "Accept-Ranges": "bytes",
-      "Content-Length": contentLength,
-      "Content-Type": "audio/mp3",
-    };
+      let contentLength = stat.size;
 
-    // HTTP Status 206 for Partial Content
-    res.writeHead(206, headers);
+      if (req.method === "HEAD") {
+        res.statusCode = 200;
+        res.setHeader("accept-ranges", "bytes");
+        res.setHeader("content-length", contentLength);
+        res.end();
+      } else {
+        // ... handle a normal HTTP GET request ...
+      }
 
-    // create video read stream for this particular chunk
-    const videoStream = fs.createReadStream(videoPath, { start, end });
+      let retrievedLength;
+      if (start !== undefined && end !== undefined) {
+        retrievedLength = end + 1 - start;
+      } else if (start !== undefined) {
+        retrievedLength = contentLength - start;
+      } else if (end !== undefined) {
+        retrievedLength = end + 1;
+      } else {
+        retrievedLength = contentLength;
+      }
 
-    // Stream the video chunk to the client
-    videoStream.pipe(res);
+      res.statusCode = start !== undefined || end !== undefined ? 206 : 200;
+
+      res.setHeader("content-length", retrievedLength);
+
+      if (range !== undefined) {
+        // Conditionally informs the frontend what range of content
+        // we are sending it.
+        res.setHeader(
+          "content-range",
+          `bytes ${start || 0}-${end || contentLength - 1}/${contentLength}`
+        );
+        res.setHeader("accept-ranges", "bytes");
+      }
+
+      // Parse Range
+      // Example: "bytes=32324-"
+
+      // Create headers
+
+      const fileStream = fs.createReadStream(videoPath, options);
+      fileStream.on("error", (error) => {
+        console.log(`Error reading file ${videoPath}.`);
+        console.log(error);
+        res.sendStatus(500);
+      });
+
+      fileStream.pipe(res);
+    });
   });
 });
 if (process.env.NODE_ENV === "production") {
@@ -79,6 +119,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
   );
 }
+
 app.listen(
   process.env.PORT || 5002,
   console.log("server running on port 5002")
