@@ -90,7 +90,6 @@ const Player = ({ track, chosenSong, albumImg, source }) => {
         </div>
         <audio
           ref={audioPlayer}
-          autoPlay
           name="media"
           src={source}
           type="audio/mpeg"
