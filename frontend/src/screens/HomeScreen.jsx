@@ -163,7 +163,7 @@ const HomeScreen = () => {
           <Player
             track={chosenTrack}
             albumImage={songImage}
-            source={`http://localhost:5002/api/${query}`}
+            source={`http://ba-music.herokuapp.com/api/${query}`}
             isSongClicked={songClicked}
           />
         </div>
