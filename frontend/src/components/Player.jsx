@@ -94,7 +94,7 @@ const Player = ({ track, isSongClicked, albumImage, source }) => {
           ref={audioPlayer}
           name="media"
           src={source}
-          type="audio/mpeg"
+          type="audio/mp3"
         ></audio>
       </div>
     )
