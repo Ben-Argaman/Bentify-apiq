@@ -20,8 +20,8 @@ const hls = new HLSServer(server, {
 });
 
 app.get("/api/:title", cors(), async (req, res) => {
-  const videos = await yt.search(req.params.title);
- res.send(videos[0].id.videoId)
+    const videos = await yts(`${req.params.title} audio`);
+ res.send(videos.all[0].videoId)
 
 });
 server.listen(8000);
